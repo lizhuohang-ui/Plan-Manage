@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/calendar/calendar",
+    "pages/person/person",
+    "pages/plan/plan"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#000000"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tab/首页.png",
+        "selectedIconPath": "static/tab/首页-选中.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/plan/plan",
+        "iconPath": "static/tab/计划.png",
+        "selectedIconPath": "static/tab/计划-选中.png",
+        "text": "计划"
+      },
+      {
+        "pagePath": "pages/calendar/calendar",
+        "iconPath": "static/tab/日历.png",
+        "selectedIconPath": "static/tab/日历-选中.png",
+        "text": "日历"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "iconPath": "static/tab/个人.png",
+        "selectedIconPath": "static/tab/个人-选中.png",
+        "text": "个人"
+      }
+    ]
+  },
+  "permission": {},
+  "usingComponents": {}
+}

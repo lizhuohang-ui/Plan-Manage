@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Calendar",
+  "usingComponents": {
+    "uni-calendar": "../../uni_modules/uni-calendar/components/uni-calendar/uni-calendar",
+    "uni-section": "../../uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-easyinput": "../../uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
+    "uni-popup": "../../uni_modules/uni-popup/components/uni-popup/uni-popup"
+  }
+}

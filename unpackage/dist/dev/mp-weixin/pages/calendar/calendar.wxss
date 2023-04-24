@@ -1,0 +1,22 @@
+/* 水平间距 */
+/* 水平间距 */
+.uni-popup.data-v-6e8913ab {
+  width: 100%;
+  background-color: black;
+}
+.uni-popup .view-popup.data-v-6e8913ab {
+  width: 750rpx;
+  height: 500rpx;
+  background-color: white;
+}
+.uni-popup .view-popup .scroll-view.data-v-6e8913ab {
+  height: 500rpx;
+}
+.uni-popup .view-popup .view-popup-input.data-v-6e8913ab {
+  height: 100rpx;
+}
+.uni-popup .view-button.data-v-6e8913ab {
+  display: flex;
+  justify-content: space-between;
+  color: #138a07;
+}
