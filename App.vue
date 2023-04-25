@@ -7,9 +7,11 @@
 
 <style lang="scss">
 	/*每个页面公共css */
+	@import "@/static/icon/iconfont.css";
 	@import '@/uni_modules/uni-scss/index.scss';
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';
+
 	// 设置整个项目的背景色
 	page {
 		background-color: #f5f5f5;

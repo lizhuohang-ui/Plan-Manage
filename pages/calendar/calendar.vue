@@ -1,4 +1,21 @@
 <template>
+	<view class="view-title" v-if="calendarType">
+		<view class="view-title-button-image">
+			<image class="view-title-image" src="../../static/icon/任务进程.png" mode="aspectFit" @click="switchCalendarMode"></image>
+		</view>
+		<!-- <uni-icons custom-prefix="iconfont" type="icon-renwujincheng" size="30" @click="switchCalendarMode"></uni-icons> -->
+		<view class="view-title-view">
+			<text class="view-title-text" >任务日历</text>
+		</view>
+	</view>
+	<view class="view-title" v-else>
+		<view class="view-title-button-image">
+			<image class="view-title-image" src="../../static/icon/文件-计划.png" mode="aspectFit" @click="switchCalendarMode"></image>
+		</view>
+		<view class="view-title-view">
+			<text class="view-title-text" >计划日历</text>
+		</view>
+	</view>
 	<view v-if="calendarType">
 		<uni-calendar 
 		class="uni-success"
@@ -41,14 +58,17 @@
 	</view>
 	
 	<view>
-		<button @click="switchCalendarMode">切换模式</button>
+		<!-- <button @click="switchCalendarMode">切换模式</button> -->
 	</view>
 
 </template>
 
 <script setup>
 	import { ref, Component } from "vue"
-	import { onLoad } from "@dcloudio/uni-app"
+	import { onLoad, onHide } from "@dcloudio/uni-app"
+	
+
+	
 	//task
 	const task = ref({
 		"日期":{
@@ -68,7 +88,7 @@
 	const startDate = ref(new Date(nowDate.value.getTime() - 15 * 24 * 60 * 60 * 1000));
 	const endDate = ref(new Date(nowDate.value.getTime() + 15 * 24 * 60 * 60 * 1000))
 	const selectedDate = ref(new Date().toISOString().substr(0, 10))
-	const selected = ref([{date: startDate.value.toISOString().substr(0, 10), info: "签到"}])
+	const selected = ref([{date: nowDate.value.toISOString().substr(0, 10), info: "已制定"}])
 	const calendarType = ref(1)
 	
 	//input
@@ -99,10 +119,6 @@
 	//method
 		//calendar
 		const changeTaskCalendar = (e) => {
-			selected.value.push({
-				date: e.fulldate,
-				info: '已制定'
-			})
 			console.log(selected.value);
 			selectedDate.value = e.fulldate
 			if(task.value[selectedDate.value] == null){
@@ -154,9 +170,23 @@
 		}
 		
 		const confirmTask = ()=> {
+			if(task.value[selectedDate.value]['taskNum'] != 0){
+				selected.value.push({
+					date: selectedDate.value,
+					info: '已制定'
+				})
+			}
+			else{
+				let itemToRemove = {date: selectedDate.value, info: '已制定'}
+				let index = selected.value.findIndex(item => item.date === itemToRemove.date)
+				if(index > -1){
+					selected.value.splice(index, 1)
+				}
+			}
 			popup.value.close()
 		}
 		
+		 
 		const switchCalendarMode = ()=>{
 			if(calendarType.value == 1){
 				calendarType.value = 0
@@ -165,11 +195,43 @@
 				calendarType.value = 1
 			}
 		}
-		
+		// 生命周期函数
+		onHide(() => {
+			console.log('onHide');
+			try {
+				uni.setStorageSync("task", task.value);
+			} catch (e) {
+				// error
+			}
+		})
 </script>
 
 <style lang="scss" scoped>
 	$my-color: #138a07;
+	.view-title{
+		background-color: $my-color;
+		display: flex;
+		justify-content: flex-start;
+		height: 70rpx;
+		.view-title-view{
+			width: 75%;
+			display: flex;
+			justify-content: center;
+		}
+		.view-title-button-image{
+			background-color: aliceblue;
+			border-radius: 20rpx;
+			box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+			.view-title-image{
+				height: 70rpx;
+				width: 100rpx;
+			}
+		}
+		.view-title-text{
+			font-size: 17pt;
+		}
+	}
+	
 	.uni-popup{
 		width: 100%;
 		background-color: black;
@@ -178,7 +240,7 @@
 			height: 500rpx;
 			background-color: white;
 			.scroll-view{
-				height: 500rpx;
+				height: 450rpx;
 			}
 			.view-popup-input{
 				height: 100rpx;

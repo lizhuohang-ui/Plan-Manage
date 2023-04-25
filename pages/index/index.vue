@@ -1,41 +1,45 @@
 <template>
-	<view v-for="item in nowTask['2023/4/19'].taskMessage" :key="item.id">
-		<uni-section class="section" :title="item.id" type="line">
+	<view v-for="(item, index) in task[nowDate]['taskInformation']" :key="item.id">
+		<uni-section class="section" :title="index" type="line">
 		</uni-section>
 		<uni-card>
-			<p>{{item.Message}}</p>
+			<p>{{item.taskMessage}}</p>
 		</uni-card>
 	</view>
 </template>
 
 <script setup>
 import { ref } from "vue"
-
+import { onLoad, onHide, onShow } from "@dcloudio/uni-app"
+const nowDate = ref(new Date().toISOString().substr(0, 10))
 const nowTask = ref({
-	"2023/4/19": {
-		"taskMessage": [
-			{	
-				"Message" :"任务1内容",
-				"id": "任务1"
-			},
-			{
-				"Message" :"任务2内容",
-				"id": "任务2"
-			},
-			{
-				"Message" :"任务3内容",
-				"id": "任务3"
-			},
-		],
-		"numTask": 3,
-		"numTaskConfirm": 3,
-		"numTaskFinish": [0, 0, 0],
+	
+})
+const task = ref({
+	"日期":{
+		"taskInformation": {
+			"任务1": {
+				"taskMessage": "任务1",
+				"taskFinish": 0
+			}, 
+		},
+		"taskNum": 1,
+		"taskFinshNum": 0
 	}
 })
 
-onload = () => {
-	console.log('onload');
-}
+onShow(() => {
+	console.log("onShow");
+	try {
+		const value = uni.getStorageSync('task');
+		if (value) {
+			console.log(value);
+			task.value = value
+		}
+	} catch (e) {
+		// error
+	}
+})
 
 </script>
 

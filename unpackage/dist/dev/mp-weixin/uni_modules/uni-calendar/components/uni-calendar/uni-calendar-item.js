@@ -93,5 +93,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     R: common_vendor.o(($event) => $options.choiceDate($props.weeks))
   });
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-65626c58"], ["__file", "D:/Web_Project/Uniapp_Project/Daily schedule/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-65626c58"], ["__file", "D:/Web_Project/Uniapp_Project/Plan Manage/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
 wx.createComponent(Component);

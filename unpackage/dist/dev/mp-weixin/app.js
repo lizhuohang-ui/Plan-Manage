@@ -11,7 +11,7 @@ const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {
   return {};
 }
-const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/Web_Project/Uniapp_Project/Daily schedule/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/Web_Project/Uniapp_Project/Plan Manage/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   return {

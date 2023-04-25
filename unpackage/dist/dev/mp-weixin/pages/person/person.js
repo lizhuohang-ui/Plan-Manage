@@ -20,5 +20,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/Web_Project/Uniapp_Project/Daily schedule/pages/person/person.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/Web_Project/Uniapp_Project/Plan Manage/pages/person/person.vue"]]);
 wx.createPage(MiniProgramPage);

@@ -33,7 +33,7 @@ const _sfc_main = {
     const startDate = common_vendor.ref(new Date(nowDate.value.getTime() - 15 * 24 * 60 * 60 * 1e3));
     const endDate = common_vendor.ref(new Date(nowDate.value.getTime() + 15 * 24 * 60 * 60 * 1e3));
     const selectedDate = common_vendor.ref(new Date().toISOString().substr(0, 10));
-    const selected = common_vendor.ref([{ date: startDate.value.toISOString().substr(0, 10), info: "签到" }]);
+    const selected = common_vendor.ref([{ date: nowDate.value.toISOString().substr(0, 10), info: "已制定" }]);
     const calendarType = common_vendor.ref(1);
     common_vendor.ref("");
     const popup = common_vendor.ref(null);
@@ -53,10 +53,6 @@ const _sfc_main = {
       task.value[selectedDate.value] = res;
     });
     const changeTaskCalendar = (e) => {
-      selected.value.push({
-        date: e.fulldate,
-        info: "已制定"
-      });
       console.log(selected.value);
       selectedDate.value = e.fulldate;
       if (task.value[selectedDate.value] == null) {
@@ -96,6 +92,18 @@ const _sfc_main = {
       task.value[selectedDate.value]["taskNum"] = taskNum - 1;
     };
     const confirmTask = () => {
+      if (task.value[selectedDate.value]["taskNum"] != 0) {
+        selected.value.push({
+          date: selectedDate.value,
+          info: "已制定"
+        });
+      } else {
+        let itemToRemove = { date: selectedDate.value, info: "已制定" };
+        let index = selected.value.findIndex((item) => item.date === itemToRemove.date);
+        if (index > -1) {
+          selected.value.splice(index, 1);
+        }
+      }
       popup.value.close();
     };
     const switchCalendarMode = () => {
@@ -105,30 +113,43 @@ const _sfc_main = {
         calendarType.value = 1;
       }
     };
+    common_vendor.onHide(() => {
+      console.log("onHide");
+      try {
+        common_vendor.index.setStorageSync("task", task.value);
+      } catch (e) {
+      }
+    });
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: calendarType.value
       }, calendarType.value ? {
-        b: common_vendor.o(changeTaskCalendar),
-        c: common_vendor.p({
+        b: common_vendor.o(switchCalendarMode)
+      } : {
+        c: common_vendor.o(switchCalendarMode)
+      }, {
+        d: calendarType.value
+      }, calendarType.value ? {
+        e: common_vendor.o(changeTaskCalendar),
+        f: common_vendor.p({
           insert: true,
           ["start-date"]: startDate.value.toISOString().substr(0, 10),
           ["end-date"]: endDate.value.toISOString().substr(0, 10),
           selected: selected.value
         })
       } : {
-        d: common_vendor.o(changePlanCalendar),
-        e: common_vendor.p({
+        g: common_vendor.o(changePlanCalendar),
+        h: common_vendor.p({
           insert: true,
           ["start-date"]: startDate.value.toISOString().substr(0, 10),
           ["end-date"]: endDate.value.toISOString().substr(0, 10),
           range: true
         })
       }, {
-        f: show.value
+        i: show.value
       }, show.value ? {
-        g: common_vendor.t(selectedDate.value),
-        h: common_vendor.f(task.value[selectedDate.value]["taskInformation"], (item, index, i0) => {
+        j: common_vendor.t(selectedDate.value),
+        k: common_vendor.f(task.value[selectedDate.value]["taskInformation"], (item, index, i0) => {
           return {
             a: "6e8913ab-3-" + i0 + ",6e8913ab-2",
             b: common_vendor.p({
@@ -146,20 +167,19 @@ const _sfc_main = {
             f: index
           };
         }),
-        i: common_vendor.o(addTask),
-        j: common_vendor.o(confirmTask),
-        k: common_vendor.o(deleteTask)
+        l: common_vendor.o(addTask),
+        m: common_vendor.o(confirmTask),
+        n: common_vendor.o(deleteTask)
       } : {}, {
-        l: common_vendor.sr(popup, "6e8913ab-2", {
+        o: common_vendor.sr(popup, "6e8913ab-2", {
           "k": "popup"
         }),
-        m: common_vendor.p({
+        p: common_vendor.p({
           type: "bottom"
-        }),
-        n: common_vendor.o(switchCalendarMode)
+        })
       });
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6e8913ab"], ["__file", "D:/Web_Project/Uniapp_Project/Daily schedule/pages/calendar/calendar.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6e8913ab"], ["__file", "D:/Web_Project/Uniapp_Project/Plan Manage/pages/calendar/calendar.vue"]]);
 wx.createPage(MiniProgramPage);
