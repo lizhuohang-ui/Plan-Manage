@@ -5,7 +5,7 @@
 	
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 	/*每个页面公共css */
 	@import "@/static/icon/iconfont.css";
 	@import '@/uni_modules/uni-scss/index.scss';

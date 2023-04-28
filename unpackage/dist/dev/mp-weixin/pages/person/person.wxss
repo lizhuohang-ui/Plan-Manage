@@ -1,0 +1,18 @@
+/* 水平间距 */
+/* 水平间距 */
+.view-root.data-v-23e4402d {
+  background-color: #138a07;
+  height: 400rpx;
+  display: flex;
+  align-items: center;
+}
+.view-root .profile-photo.data-v-23e4402d {
+  background-color: aliceblue;
+  height: 100rpx;
+  width: 100rpx;
+  margin: 0, 10rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

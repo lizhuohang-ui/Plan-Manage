@@ -38,6 +38,7 @@ const _sfc_main = {
     common_vendor.ref("");
     const popup = common_vendor.ref(null);
     const show = common_vendor.ref(false);
+    const showPlan = common_vendor.ref(false);
     common_vendor.onLoad(() => {
       console.log("onLoad");
       const res = {
@@ -53,7 +54,6 @@ const _sfc_main = {
       task.value[selectedDate.value] = res;
     });
     const changeTaskCalendar = (e) => {
-      console.log(selected.value);
       selectedDate.value = e.fulldate;
       if (task.value[selectedDate.value] == null) {
         const res = {
@@ -74,6 +74,7 @@ const _sfc_main = {
     };
     const changePlanCalendar = (e) => {
       console.log(e);
+      popup.value.open();
     };
     const addTask = () => {
       console.log("add");
@@ -146,10 +147,12 @@ const _sfc_main = {
           range: true
         })
       }, {
-        i: show.value
+        i: calendarType.value
+      }, calendarType.value ? common_vendor.e({
+        j: show.value
       }, show.value ? {
-        j: common_vendor.t(selectedDate.value),
-        k: common_vendor.f(task.value[selectedDate.value]["taskInformation"], (item, index, i0) => {
+        k: common_vendor.t(selectedDate.value),
+        l: common_vendor.f(task.value[selectedDate.value]["taskInformation"], (item, index, i0) => {
           return {
             a: "6e8913ab-3-" + i0 + ",6e8913ab-2",
             b: common_vendor.p({
@@ -167,17 +170,26 @@ const _sfc_main = {
             f: index
           };
         }),
-        l: common_vendor.o(addTask),
-        m: common_vendor.o(confirmTask),
-        n: common_vendor.o(deleteTask)
+        m: common_vendor.o(addTask),
+        n: common_vendor.o(confirmTask),
+        o: common_vendor.o(deleteTask)
       } : {}, {
-        o: common_vendor.sr(popup, "6e8913ab-2", {
+        p: common_vendor.sr(popup, "6e8913ab-2", {
           "k": "popup"
         }),
-        p: common_vendor.p({
+        q: common_vendor.p({
           type: "bottom"
         })
-      });
+      }) : common_vendor.e({
+        r: showPlan.value
+      }, showPlan.value ? {} : {}, {
+        s: common_vendor.sr(popup, "6e8913ab-5", {
+          "k": "popup"
+        }),
+        t: common_vendor.p({
+          type: "bottom"
+        })
+      }));
     };
   }
 };

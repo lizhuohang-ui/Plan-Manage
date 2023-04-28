@@ -16,25 +16,25 @@ if (!Math) {
 function _sfc_render(_ctx, _cache) {
   return {
     a: common_vendor.p({
-      title: "plan",
+      title: "计划一",
       type: "line"
     }),
     b: common_vendor.p({
-      title: "手风琴效果"
+      title: "计划一"
     }),
     c: common_vendor.p({
-      title: "plan",
+      title: "计划一",
       type: "line"
     }),
     d: common_vendor.p({
-      title: "手风琴效果"
+      title: "计划二"
     }),
     e: common_vendor.p({
-      title: "plan",
+      title: "计划一",
       type: "line"
     }),
     f: common_vendor.p({
-      title: "手风琴效果"
+      title: "计划三"
     }),
     g: common_vendor.p({
       accordion: true

@@ -15,6 +15,7 @@ app.$mount()
 
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
+import { createStore } from 'vuex'
 import App from './App.vue'
 export function createApp() {
   const app = createSSRApp(App)

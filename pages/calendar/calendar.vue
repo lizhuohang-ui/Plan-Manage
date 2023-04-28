@@ -1,9 +1,9 @@
 <template>
+	<!-- 标题部分 -->
 	<view class="view-title" v-if="calendarType">
 		<view class="view-title-button-image">
 			<image class="view-title-image" src="../../static/icon/任务进程.png" mode="aspectFit" @click="switchCalendarMode"></image>
 		</view>
-		<!-- <uni-icons custom-prefix="iconfont" type="icon-renwujincheng" size="30" @click="switchCalendarMode"></uni-icons> -->
 		<view class="view-title-view">
 			<text class="view-title-text" >任务日历</text>
 		</view>
@@ -16,6 +16,8 @@
 			<text class="view-title-text" >计划日历</text>
 		</view>
 	</view>
+	
+	<!-- 日历部分 -->
 	<view v-if="calendarType">
 		<uni-calendar 
 		class="uni-success"
@@ -36,8 +38,10 @@
 		@change="changePlanCalendar"
 		 />
 	</view>
-	<view>
-		<uni-popup ref="popup" type="bottom" class=".uni-popup">
+	
+	<!-- 弹窗部分 -->
+	<view v-if="calendarType">
+		<uni-popup ref="popup" type="bottom" class="uni-popup">
 			<view v-if="show" class="view-popup">
 				<view>
 					{{selectedDate}}:
@@ -57,8 +61,12 @@
 		</uni-popup>
 	</view>
 	
-	<view>
-		<!-- <button @click="switchCalendarMode">切换模式</button> -->
+	<view v-else>
+		<uni-popup class="uni-popup" ref="popup" type="bottom">
+			<view v-if="showPlan" class="view-popup">
+				dada
+			</view>
+		</uni-popup>
 	</view>
 
 </template>
@@ -97,6 +105,7 @@
 	//popup
 	const popup = ref(null)
 	const show = ref(false)
+	const showPlan = ref(false)
 	
 	onLoad(() => {
 		console.log('onLoad');
@@ -119,7 +128,6 @@
 	//method
 		//calendar
 		const changeTaskCalendar = (e) => {
-			console.log(selected.value);
 			selectedDate.value = e.fulldate
 			if(task.value[selectedDate.value] == null){
 				const res = {
@@ -141,6 +149,7 @@
 		
 		const changePlanCalendar = (e) => {
 			console.log(e);
+			popup.value.open()
 		}
 		
 		const close = () => {
@@ -186,7 +195,7 @@
 			popup.value.close()
 		}
 		
-		 
+		
 		const switchCalendarMode = ()=>{
 			if(calendarType.value == 1){
 				calendarType.value = 0
