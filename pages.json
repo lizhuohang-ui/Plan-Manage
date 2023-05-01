@@ -23,8 +23,16 @@
 			"style": {
 				"navigationBarTitleText": "Plan"
 			}
-		}
-	],
+		},
+	    {
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "login"
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",

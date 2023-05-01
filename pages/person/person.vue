@@ -1,7 +1,7 @@
 <template>
 	<view class="view-root">
 		<view class="profile-photo">
-			<image src="../../static/icon/任务进程.png" mode="aspectFit"></image>
+			<image src="../../static/icon/任务进程.png" mode="aspectFit" @click="login"></image>
 		</view>
 		<view>
 			
@@ -10,6 +10,18 @@
 </template>
 
 <script setup>
+	
+	const login = () => {
+		uni.navigateTo({
+			url: '/pages/login/login',
+			success: res => {
+				console.log('success');
+			},
+			fail: () => {},
+			complete: () => {}
+		});
+	}
+	
 </script>
 
 <style scoped lang="scss">

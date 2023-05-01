@@ -6,6 +6,7 @@ if (!Math) {
   "./pages/calendar/calendar.js";
   "./pages/person/person.js";
   "./pages/plan/plan.js";
+  "./pages/login/login.js";
 }
 const _sfc_main = {};
 function _sfc_render(_ctx, _cache) {
